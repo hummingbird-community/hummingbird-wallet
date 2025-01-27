@@ -15,6 +15,7 @@ let package = Package(
         .package(url: "https://github.com/hummingbird-project/hummingbird-fluent.git", from: "2.0.0"),
         .package(url: "https://github.com/fpseverino/fluent-wallet.git", from: "0.1.0"),
         .package(url: "https://github.com/swift-server-community/APNSwift.git", from: "6.0.1"),
+        .package(url: "https://github.com/swift-server/swift-service-lifecycle.git", from: "2.6.3"),
         // used in tests
         .package(url: "https://github.com/vapor/fluent-sqlite-driver.git", from: "4.8.0"),
     ],
@@ -25,6 +26,7 @@ let package = Package(
                 .product(name: "Hummingbird", package: "hummingbird"),
                 .product(name: "HummingbirdFluent", package: "hummingbird-fluent"),
                 .product(name: "APNS", package: "apnswift"),
+                .product(name: "ServiceLifecycle", package: "swift-service-lifecycle"),
             ],
             swiftSettings: swiftSettings
         ),

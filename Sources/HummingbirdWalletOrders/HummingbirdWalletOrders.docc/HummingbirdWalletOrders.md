@@ -12,5 +12,6 @@ For information on Apple Wallet orders, see the [Apple Developer Documentation](
 
 ### Essentials
 
+- <doc:GettingStarted>
 - ``OrdersService``
 - ``OrdersServiceCustom``

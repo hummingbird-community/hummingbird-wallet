@@ -14,7 +14,6 @@ public final class OrdersService<OrderDataType: OrderDataModel>: Sendable where 
     /// - Parameters:
     ///   - logger: The `Logger` instance to use.
     ///   - fluent: The `Fluent` instance to use.
-    ///   - eventLoopGroup: The `EventLoopGroup` to run the service on.
     ///   - pemWWDRCertificate: Apple's WWDR.pem certificate in PEM format.
     ///   - pemCertificate: The PEM Certificate for signing orders.
     ///   - pemPrivateKey: The PEM Certificate's private key for signing orders.
@@ -23,7 +22,6 @@ public final class OrdersService<OrderDataType: OrderDataModel>: Sendable where 
     public init(
         logger: Logger,
         fluent: Fluent,
-        eventLoopGroup: any EventLoopGroup,
         pemWWDRCertificate: String,
         pemCertificate: String,
         pemPrivateKey: String,
@@ -33,7 +31,6 @@ public final class OrdersService<OrderDataType: OrderDataModel>: Sendable where 
         self.service = try OrdersServiceCustom(
             logger: logger,
             fluent: fluent,
-            eventLoopGroup: eventLoopGroup,
             pemWWDRCertificate: pemWWDRCertificate,
             pemCertificate: pemCertificate,
             pemPrivateKey: pemPrivateKey,
@@ -52,7 +49,7 @@ public final class OrdersService<OrderDataType: OrderDataModel>: Sendable where 
     }
 
     /// Adds the migrations for Wallet orders models.
-    public func register() async {
+    public func addMigrations() async {
         await self.service.fluent.migrations.add(CreateOrder())
         await self.service.fluent.migrations.add(CreateOrdersDevice())
         await self.service.fluent.migrations.add(CreateOrdersRegistration())
@@ -63,6 +60,13 @@ public final class OrdersService<OrderDataType: OrderDataModel>: Sendable where 
     /// - Parameter order: The order to send the notifications for.
     public func sendPushNotifications(for order: OrderDataType) async throws {
         try await service.sendPushNotifications(for: order)
+    }
+
+    /// Add the routes that Apple Wallet expects on your server to a `RouterGroup`.
+    ///
+    /// - Parameter group: The `RouterGroup` to add the routes to.
+    public func addRoutes(to group: RouterGroup<BasicRequestContext>) {
+        self.service.addRoutes(to: group)
     }
 }
 

@@ -6,7 +6,6 @@ import Foundation
 import Hummingbird
 import HummingbirdFluent
 import HummingbirdWallet
-import NIO
 import NIOSSL
 import ServiceLifecycle
 import WalletOrders
@@ -39,7 +38,6 @@ where
     /// - Parameters:
     ///   - logger: The `Logger` instance to use.
     ///   - fluent: The `Fluent` instance to use.
-    ///   - eventLoopGroup: The `EventLoopGroup` to run the service on.
     ///   - pemWWDRCertificate: Apple's WWDR.pem certificate in PEM format.
     ///   - pemCertificate: The PEM Certificate for signing orders.
     ///   - pemPrivateKey: The PEM Certificate's private key for signing orders.
@@ -48,7 +46,6 @@ where
     public init(
         logger: Logger,
         fluent: Fluent,
-        eventLoopGroup: any EventLoopGroup,
         pemWWDRCertificate: String,
         pemCertificate: String,
         pemPrivateKey: String,
@@ -92,7 +89,7 @@ where
 
         self.apnsClient = APNSClient(
             configuration: apnsConfig,
-            eventLoopGroupProvider: .shared(eventLoopGroup),
+            eventLoopGroupProvider: .createNew,
             responseDecoder: JSONDecoder(),
             requestEncoder: JSONEncoder()
         )

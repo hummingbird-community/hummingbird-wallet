@@ -8,8 +8,8 @@ struct ApplePassMiddleware<Context: RequestContext, PassType: PassModel>: Router
     let fluent: Fluent
 
     public func handle(_ request: Request, context: Context, next: (Request, Context) async throws -> Response) async throws -> Response {
-        let id = try context.parameters.require("passSerial", as: UUID.self)
         guard
+            let id = context.parameters.get("passSerial", as: UUID.self),
             let authToken = request.headers[.authorization]?.replacingOccurrences(of: "ApplePass ", with: ""),
             (try await PassType.query(on: self.fluent.db())
                 .filter(\._$id == id)

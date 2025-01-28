@@ -8,8 +8,8 @@ struct AppleOrderMiddleware<Context: RequestContext, OrderType: OrderModel>: Rou
     let fluent: Fluent
 
     public func handle(_ request: Request, context: Context, next: (Request, Context) async throws -> Response) async throws -> Response {
-        let id = try context.parameters.require("orderIdentifier", as: UUID.self)
         guard
+            let id = context.parameters.get("orderIdentifier", as: UUID.self),
             let authToken = request.headers[.authorization]?.replacingOccurrences(of: "AppleOrder ", with: ""),
             (try await OrderType.query(on: self.fluent.db())
                 .filter(\._$id == id)

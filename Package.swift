@@ -46,6 +46,9 @@ let package = Package(
                 .product(name: "FluentSQLiteDriver", package: "fluent-sqlite-driver"),
                 .product(name: "HummingbirdTesting", package: "hummingbird"),
             ],
+            resources: [
+                .copy("SourceFiles")
+            ],
             swiftSettings: swiftSettings
         ),
         // MARK: - Wallet Orders
@@ -63,6 +66,9 @@ let package = Package(
                 .target(name: "HummingbirdWalletOrders"),
                 .product(name: "FluentSQLiteDriver", package: "fluent-sqlite-driver"),
                 .product(name: "HummingbirdTesting", package: "hummingbird"),
+            ],
+            resources: [
+                .copy("SourceFiles")
             ],
             swiftSettings: swiftSettings
         ),

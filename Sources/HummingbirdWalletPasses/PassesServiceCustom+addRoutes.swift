@@ -174,7 +174,7 @@ extension PassesServiceCustom {
         let entries = try await req.decode(as: LogEntriesDTO.self, context: context)
 
         for log in entries.logs {
-            self.logger.notice("VaporWalletPasses: \(log)")
+            self.logger.notice("HummingbirdWalletPasses: \(log)")
         }
 
         return .ok

@@ -152,7 +152,7 @@ extension OrdersServiceCustom {
         let entries = try await req.decode(as: LogEntriesDTO.self, context: context)
 
         for log in entries.logs {
-            self.logger.notice("VaporWalletOrders: \(log)")
+            self.logger.notice("HummingbirdWalletOrders: \(log)")
         }
 
         return .ok

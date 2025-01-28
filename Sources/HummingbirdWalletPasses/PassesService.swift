@@ -75,7 +75,7 @@ public struct PassesService<PassDataType: PassDataModel>: Sendable where Pass ==
 
     /// Sends push notifications for a given pass.
     ///
-    /// - Parameter passData: The pass to send the notifications for.
+    /// - Parameter pass: The pass to send the notifications for.
     public func sendPushNotifications(for pass: PassDataType) async throws {
         try await self.service.sendPushNotifications(for: pass)
     }

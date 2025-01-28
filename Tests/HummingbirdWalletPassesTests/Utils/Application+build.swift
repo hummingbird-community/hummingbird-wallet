@@ -1,5 +1,4 @@
 import FluentSQLiteDriver
-import FluentWalletPasses
 import Foundation
 import Hummingbird
 import HummingbirdFluent

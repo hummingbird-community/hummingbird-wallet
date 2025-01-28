@@ -116,7 +116,7 @@ extension PassesServiceCustom {
         }
 
         let id = try context.parameters.require("passSerial", as: UUID.self)
-        
+
         guard
             let pass = try await PassType.query(on: self.fluent.db())
                 .filter(\._$id == id)

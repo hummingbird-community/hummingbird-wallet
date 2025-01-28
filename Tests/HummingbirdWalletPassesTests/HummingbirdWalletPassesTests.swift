@@ -1,8 +1,8 @@
 import AsyncHTTPClient
-import Hummingbird
-import HummingbirdTesting
 import FluentWalletPasses
 import Foundation
+import Hummingbird
+import HummingbirdTesting
 import Testing
 
 @testable import HummingbirdWalletPasses
@@ -239,7 +239,7 @@ struct HummingbirdWalletPassesTests {
                 #expect(passes.serialNumbers[0] == passID.uuidString)
                 #expect(passes.lastUpdated == String(pass.updatedAt!.timeIntervalSince1970))
             }
-            
+
             // Test call with invalid UUID
             try await client.execute(
                 uri: "\(passesURI)devices/\(deviceLibraryIdentifier)/registrations/\(pass.typeIdentifier)/invalid-uuid",

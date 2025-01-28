@@ -1,8 +1,8 @@
 import AsyncHTTPClient
-import Hummingbird
-import HummingbirdTesting
 import FluentWalletOrders
 import Foundation
+import Hummingbird
+import HummingbirdTesting
 import Testing
 
 @testable import HummingbirdWalletOrders
@@ -177,7 +177,7 @@ struct HummingbirdWalletOrdersTests {
                 #expect(orders.orderIdentifiers[0] == orderID.uuidString)
                 #expect(orders.lastModified == String(order.updatedAt!.timeIntervalSince1970))
             }
-            
+
             // Test call with invalid UUID
             try await client.execute(
                 uri: "\(ordersURI)devices/\(deviceLibraryIdentifier)/registrations/\(order.typeIdentifier)/invalid-uuid",

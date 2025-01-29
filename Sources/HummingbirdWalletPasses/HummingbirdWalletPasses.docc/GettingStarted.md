@@ -37,8 +37,6 @@ func buildApplication(_ arguments: some AppArguments) async throws -> some Appli
         pemPrivateKey: env.get("PEM_PRIVATE_KEY")!
     )
 
-    try app.grouped("api", "passes").register(collection: passesService)
-
     ...
 
     let router = Router()
@@ -55,7 +53,6 @@ func buildApplication(_ arguments: some AppArguments) async throws -> some Appli
 If you don't like the schema names provided by `FluentWalletPasses`, you can create your own models conforming to `PassModel`, `PersonalizationInfoModel`, `DeviceModel`, and `PassesRegistrationModel` and instantiate the generic ``PassesServiceCustom``, providing it your model types.
 
 ```swift
-import Fluent
 import FluentWalletPasses
 import Hummingbird
 import HummingbirdFluent
@@ -76,8 +73,6 @@ func buildApplication(_ arguments: some AppArguments) async throws -> some Appli
         pemCertificate: env.get("PEM_CERTIFICATE")!,
         pemPrivateKey: env.get("PEM_PRIVATE_KEY")!
     )
-
-    try app.grouped("api", "passes").register(collection: passesService)
 
     ...
 

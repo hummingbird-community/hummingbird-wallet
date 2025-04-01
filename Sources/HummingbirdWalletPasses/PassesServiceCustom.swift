@@ -6,10 +6,11 @@ import Foundation
 import Hummingbird
 import HummingbirdFluent
 import HummingbirdWallet
+import NIOPosix
 import NIOSSL
 import ServiceLifecycle
 import WalletPasses
-import Zip
+import ZipArchive
 
 /// Struct to handle ``PassesService``.
 ///
@@ -93,7 +94,7 @@ where
 
         self.apnsClient = APNSClient(
             configuration: apnsConfig,
-            eventLoopGroupProvider: .createNew,
+            eventLoopGroupProvider: .shared(MultiThreadedEventLoopGroup.singleton),
             responseDecoder: JSONDecoder(),
             requestEncoder: JSONEncoder()
         )
@@ -187,13 +188,10 @@ extension PassesServiceCustom {
             throw WalletPassesError.invalidNumberOfPasses
         }
 
-        var files: [ArchiveFile] = []
+        let writer = ZipArchiveWriter()
         for (i, pass) in passes.enumerated() {
-            try await files.append(ArchiveFile(filename: "pass\(i).pkpass", data: self.build(pass: pass)))
+            try await writer.writeFile(filename: "pass\(i).pkpass", contents: Array(self.build(pass: pass)))
         }
-
-        let zipFile = FileManager.default.temporaryDirectory.appendingPathComponent("\(UUID().uuidString).pkpass")
-        try Zip.zipData(archiveFiles: files, zipFilePath: zipFile)
-        return try Data(contentsOf: zipFile)
+        return try Data(writer.finalizeBuffer())
     }
 }

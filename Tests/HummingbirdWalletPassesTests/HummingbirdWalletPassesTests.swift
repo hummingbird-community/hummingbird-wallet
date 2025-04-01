@@ -29,7 +29,7 @@ struct HummingbirdWalletPassesTests {
                 ]
             ) { response in
                 #expect(response.status == .ok)
-                #expect(response.body != nil)
+                #expect(response.body.readableBytes > 0)
                 #expect(response.headers[.contentType] == "application/vnd.apple.pkpass")
                 #expect(response.headers[.lastModified] != nil)
             }
@@ -112,7 +112,7 @@ struct HummingbirdWalletPassesTests {
                 body: personalizationDictBytes
             ) { response in
                 #expect(response.status == .ok)
-                #expect(response.body != nil)
+                #expect(response.body.readableBytes > 0)
                 #expect(response.headers[.contentType] == "application/octet-stream")
             }
 

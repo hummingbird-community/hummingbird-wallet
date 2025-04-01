@@ -29,7 +29,7 @@ struct HummingbirdWalletOrdersTests {
                 ]
             ) { response in
                 #expect(response.status == .ok)
-                #expect(response.body != nil)
+                #expect(response.body.readableBytes > 0)
                 #expect(response.headers[.contentType] == "application/vnd.apple.order")
                 #expect(response.headers[.lastModified] != nil)
             }

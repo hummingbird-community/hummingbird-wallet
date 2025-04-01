@@ -16,6 +16,7 @@ let package = Package(
         .package(url: "https://github.com/fpseverino/fluent-wallet.git", from: "0.1.0"),
         .package(url: "https://github.com/swift-server-community/APNSwift.git", from: "6.0.1"),
         .package(url: "https://github.com/swift-server/swift-service-lifecycle.git", from: "2.6.3"),
+        .package(url: "https://github.com/adam-fowler/swift-zip-archive.git", from: "0.6.3"),
         // used in tests
         .package(url: "https://github.com/vapor/fluent-sqlite-driver.git", from: "4.8.0"),
     ],
@@ -36,6 +37,7 @@ let package = Package(
             dependencies: [
                 .target(name: "HummingbirdWallet"),
                 .product(name: "FluentWalletPasses", package: "fluent-wallet"),
+                .product(name: "ZipArchive", package: "swift-zip-archive"),
             ],
             swiftSettings: swiftSettings
         ),

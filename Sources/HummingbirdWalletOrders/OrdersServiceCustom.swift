@@ -6,6 +6,7 @@ import Foundation
 import Hummingbird
 import HummingbirdFluent
 import HummingbirdWallet
+import NIOPosix
 import NIOSSL
 import ServiceLifecycle
 import WalletOrders
@@ -89,7 +90,7 @@ where
 
         self.apnsClient = APNSClient(
             configuration: apnsConfig,
-            eventLoopGroupProvider: .createNew,
+            eventLoopGroupProvider: .shared(MultiThreadedEventLoopGroup.singleton),
             responseDecoder: JSONDecoder(),
             requestEncoder: JSONEncoder()
         )

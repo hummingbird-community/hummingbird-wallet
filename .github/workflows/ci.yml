@@ -9,6 +9,7 @@ on:
     - '**.yml'
   pull_request:
   workflow_dispatch:
+
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}-ci
   cancel-in-progress: true
@@ -40,7 +41,6 @@ jobs:
     strategy:
       matrix:
         image: ["swift:6.0", "swiftlang/swift:nightly-6.1-jammy"]
-    
     container:
       image: ${{ matrix.image }}
     steps:

@@ -1,9 +1,9 @@
-import FluentKit
-import FluentWalletPasses
-import Foundation
-import Hummingbird
-import HummingbirdFluent
-import ServiceLifecycle
+public import FluentKit
+public import FluentWalletPasses
+public import Foundation
+public import Hummingbird
+public import HummingbirdFluent
+public import ServiceLifecycle
 
 /// The main struct that handles Apple Wallet passes.
 public struct PassesService<PassDataType: PassDataModel>: Sendable where Pass == PassDataType.PassType {

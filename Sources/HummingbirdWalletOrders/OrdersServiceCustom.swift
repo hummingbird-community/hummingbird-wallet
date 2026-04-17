@@ -1,14 +1,14 @@
 import APNS
 import APNSCore
-import FluentKit
-import FluentWalletOrders
-import Foundation
+public import FluentKit
+public import FluentWalletOrders
+public import Foundation
 import Hummingbird
-import HummingbirdFluent
+public import HummingbirdFluent
 import HummingbirdWallet
 import NIOPosix
 import NIOSSL
-import ServiceLifecycle
+public import ServiceLifecycle
 import WalletOrders
 
 /// Struct to handle ``OrdersService``.

@@ -1,8 +1,11 @@
 import AsyncHTTPClient
+import FluentKit
 import FluentWalletOrders
 import Foundation
 import Hummingbird
+import HummingbirdFluent
 import HummingbirdTesting
+import NIOFoundationCompat
 import Testing
 
 @testable import HummingbirdWalletOrders

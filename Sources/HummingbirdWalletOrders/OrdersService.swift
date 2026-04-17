@@ -1,9 +1,9 @@
-import FluentKit
-import FluentWalletOrders
-import Foundation
-import Hummingbird
-import HummingbirdFluent
-import ServiceLifecycle
+public import FluentKit
+public import FluentWalletOrders
+public import Foundation
+public import Hummingbird
+public import HummingbirdFluent
+public import ServiceLifecycle
 
 /// The main struct that handles Wallet orders.
 public final class OrdersService<OrderDataType: OrderDataModel>: Sendable where Order == OrderDataType.OrderType {

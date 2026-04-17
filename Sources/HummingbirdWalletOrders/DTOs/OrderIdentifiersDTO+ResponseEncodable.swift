@@ -1,4 +1,4 @@
 import FluentWalletOrders
-import Hummingbird
+public import Hummingbird
 
 extension OrderIdentifiersDTO: @retroactive ResponseEncodable {}

@@ -43,15 +43,13 @@ where
     ///   - pemCertificate: The PEM Certificate for signing orders.
     ///   - pemPrivateKey: The PEM Certificate's private key for signing orders.
     ///   - pemPrivateKeyPassword: The password to the private key. If the key is not encrypted it must be `nil`. Defaults to `nil`.
-    ///   - openSSLPath: The location of the `openssl` command as a file path.
     public init(
         logger: Logger,
         fluent: Fluent,
         pemWWDRCertificate: String,
         pemCertificate: String,
         pemPrivateKey: String,
-        pemPrivateKeyPassword: String? = nil,
-        openSSLPath: String = "/usr/bin/openssl"
+        pemPrivateKeyPassword: String? = nil
     ) throws {
         self.logger = logger
         self.fluent = fluent
@@ -59,8 +57,7 @@ where
             pemWWDRCertificate: pemWWDRCertificate,
             pemCertificate: pemCertificate,
             pemPrivateKey: pemPrivateKey,
-            pemPrivateKeyPassword: pemPrivateKeyPassword,
-            openSSLPath: openSSLPath
+            pemPrivateKeyPassword: pemPrivateKeyPassword
         )
 
         let privateKeyBytes = pemPrivateKey.data(using: .utf8)!.map { UInt8($0) }

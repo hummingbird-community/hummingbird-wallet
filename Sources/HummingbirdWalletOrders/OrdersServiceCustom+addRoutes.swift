@@ -1,4 +1,5 @@
 import FluentKit
+import FluentWallet
 import FluentWalletOrders
 import Foundation
 public import Hummingbird

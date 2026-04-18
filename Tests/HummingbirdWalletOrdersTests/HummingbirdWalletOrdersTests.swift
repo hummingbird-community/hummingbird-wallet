@@ -1,5 +1,6 @@
 import AsyncHTTPClient
 import FluentKit
+import FluentWallet
 import FluentWalletOrders
 import Foundation
 import Hummingbird

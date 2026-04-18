@@ -1,6 +1,7 @@
 import APNS
 import APNSCore
 public import FluentKit
+public import FluentWallet
 public import FluentWalletOrders
 public import Foundation
 import Hummingbird

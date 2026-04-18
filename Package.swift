@@ -14,7 +14,7 @@ let package = Package(
         .package(url: "https://github.com/hummingbird-project/hummingbird.git", from: "2.22.0"),
         .package(url: "https://github.com/hummingbird-project/hummingbird-fluent.git", from: "2.0.0"),
         .package(url: "https://github.com/fpseverino/swift-wallet.git", from: "1.0.0"),
-        .package(url: "https://github.com/fpseverino/fluent-wallet.git", from: "0.2.0"),
+        .package(url: "https://github.com/fpseverino/fluent-wallet.git", from: "0.3.0"),
         .package(url: "https://github.com/swift-server-community/APNSwift.git", from: "6.5.0"),
         .package(url: "https://github.com/swift-server/swift-service-lifecycle.git", from: "2.11.0"),
         .package(url: "https://github.com/adam-fowler/swift-zip-archive.git", from: "0.6.4"),
@@ -25,6 +25,7 @@ let package = Package(
         .target(
             name: "HummingbirdWallet",
             dependencies: [
+                .product(name: "FluentWallet", package: "fluent-wallet"),
                 .product(name: "Hummingbird", package: "hummingbird"),
                 .product(name: "HummingbirdFluent", package: "hummingbird-fluent"),
                 .product(name: "APNS", package: "apnswift"),
@@ -38,6 +39,7 @@ let package = Package(
             dependencies: [
                 .target(name: "HummingbirdWallet"),
                 .product(name: "WalletPasses", package: "swift-wallet"),
+                .product(name: "FluentWallet", package: "fluent-wallet"),
                 .product(name: "FluentWalletPasses", package: "fluent-wallet"),
                 .product(name: "ZipArchive", package: "swift-zip-archive"),
             ],
@@ -47,6 +49,7 @@ let package = Package(
             name: "HummingbirdWalletPassesTests",
             dependencies: [
                 .target(name: "HummingbirdWalletPasses"),
+                .product(name: "FluentWallet", package: "fluent-wallet"),
                 .product(name: "FluentSQLiteDriver", package: "fluent-sqlite-driver"),
                 .product(name: "HummingbirdTesting", package: "hummingbird"),
             ],
@@ -61,6 +64,7 @@ let package = Package(
             dependencies: [
                 .target(name: "HummingbirdWallet"),
                 .product(name: "WalletOrders", package: "swift-wallet"),
+                .product(name: "FluentWallet", package: "fluent-wallet"),
                 .product(name: "FluentWalletOrders", package: "fluent-wallet"),
             ],
             swiftSettings: swiftSettings
@@ -69,6 +73,7 @@ let package = Package(
             name: "HummingbirdWalletOrdersTests",
             dependencies: [
                 .target(name: "HummingbirdWalletOrders"),
+                .product(name: "FluentWallet", package: "fluent-wallet"),
                 .product(name: "FluentSQLiteDriver", package: "fluent-sqlite-driver"),
                 .product(name: "HummingbirdTesting", package: "hummingbird"),
             ],

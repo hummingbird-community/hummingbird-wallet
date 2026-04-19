@@ -1,5 +1,7 @@
 ci:
-  validate: false
+  validate:
+    swift-format: true
+  enable_tests: true
   # Enable Linux CI
   linux:
     # Docker container to use in linux CI

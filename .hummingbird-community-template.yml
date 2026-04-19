@@ -1,8 +1,10 @@
 ci:
-  validate: false
+  validate:
+    swift-format: true
+  enable_tests: true
   # Enable Linux CI
   linux:
     # Docker container to use in linux CI
-    images: ['swift:6.0', 'swiftlang/swift:nightly-6.1-jammy']
+    images: ['swift:6.1', 'swift:6.2', 'swift:6.3']
   # Enable Mac CI
   mac: true

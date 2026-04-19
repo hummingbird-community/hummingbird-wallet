@@ -1,9 +1,9 @@
-import FluentKit
-import FluentWalletPasses
-import Foundation
-import Hummingbird
-import HummingbirdFluent
-import ServiceLifecycle
+public import FluentKit
+public import FluentWalletPasses
+public import Foundation
+public import Hummingbird
+public import HummingbirdFluent
+public import ServiceLifecycle
 
 /// The main struct that handles Apple Wallet passes.
 public struct PassesService<PassDataType: PassDataModel>: Sendable where Pass == PassDataType.PassType {
@@ -18,15 +18,13 @@ public struct PassesService<PassDataType: PassDataModel>: Sendable where Pass ==
     ///   - pemCertificate: The PEM Certificate for signing passes.
     ///   - pemPrivateKey: The PEM Certificate's private key for signing passes.
     ///   - pemPrivateKeyPassword: The password to the private key. If the key is not encrypted it must be `nil`. Defaults to `nil`.
-    ///   - openSSLPath: The location of the `openssl` command as a file path.
     public init(
         logger: Logger,
         fluent: Fluent,
         pemWWDRCertificate: String,
         pemCertificate: String,
         pemPrivateKey: String,
-        pemPrivateKeyPassword: String? = nil,
-        openSSLPath: String = "/usr/bin/openssl"
+        pemPrivateKeyPassword: String? = nil
     ) throws {
         self.service = try PassesServiceCustom(
             logger: logger,
@@ -34,8 +32,7 @@ public struct PassesService<PassDataType: PassDataModel>: Sendable where Pass ==
             pemWWDRCertificate: pemWWDRCertificate,
             pemCertificate: pemCertificate,
             pemPrivateKey: pemPrivateKey,
-            pemPrivateKeyPassword: pemPrivateKeyPassword,
-            openSSLPath: openSSLPath
+            pemPrivateKeyPassword: pemPrivateKeyPassword
         )
     }
 

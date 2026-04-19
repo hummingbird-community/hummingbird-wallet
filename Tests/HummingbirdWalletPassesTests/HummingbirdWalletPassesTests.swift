@@ -1,8 +1,12 @@
 import AsyncHTTPClient
+import FluentKit
+import FluentWallet
 import FluentWalletPasses
 import Foundation
 import Hummingbird
+import HummingbirdFluent
 import HummingbirdTesting
+import NIOFoundationCompat
 import Testing
 
 @testable import HummingbirdWalletPasses

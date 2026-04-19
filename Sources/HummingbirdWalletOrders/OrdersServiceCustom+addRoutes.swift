@@ -1,9 +1,11 @@
 import FluentKit
+import FluentWallet
 import FluentWalletOrders
 import Foundation
-import Hummingbird
+public import Hummingbird
 import HummingbirdFluent
 import HummingbirdWallet
+import NIOFoundationCompat
 
 extension OrdersServiceCustom {
     typealias Context = BasicRequestContext

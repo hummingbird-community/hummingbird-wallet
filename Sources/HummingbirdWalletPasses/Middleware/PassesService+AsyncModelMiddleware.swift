@@ -1,4 +1,4 @@
-import FluentKit
+public import FluentKit
 import FluentWalletPasses
 import Foundation
 

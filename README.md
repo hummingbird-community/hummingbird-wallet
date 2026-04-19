@@ -11,7 +11,7 @@
 Use the SPM string to easily include the dependendency in your `Package.swift` file.
 
 ```swift
-.package(url: "https://github.com/hummingbird-community/hummingbird-wallet.git", from: "0.1.0")
+.package(url: "https://github.com/hummingbird-community/hummingbird-wallet.git", from: "0.2.0")
 ```
 
 ## 🎟️ Wallet Passes

@@ -1,4 +1,4 @@
-// swift-tools-version: 6.0
+// swift-tools-version: 6.1
 import PackageDescription
 
 let package = Package(
@@ -11,19 +11,21 @@ let package = Package(
         .library(name: "HummingbirdWalletOrders", targets: ["HummingbirdWalletOrders"]),
     ],
     dependencies: [
-        .package(url: "https://github.com/hummingbird-project/hummingbird.git", from: "2.7.0"),
+        .package(url: "https://github.com/hummingbird-project/hummingbird.git", from: "2.22.0"),
         .package(url: "https://github.com/hummingbird-project/hummingbird-fluent.git", from: "2.0.0"),
-        .package(url: "https://github.com/fpseverino/fluent-wallet.git", from: "0.1.0"),
-        .package(url: "https://github.com/swift-server-community/APNSwift.git", from: "6.0.1"),
-        .package(url: "https://github.com/swift-server/swift-service-lifecycle.git", from: "2.6.3"),
-        .package(url: "https://github.com/adam-fowler/swift-zip-archive.git", from: "0.6.3"),
+        .package(url: "https://github.com/fpseverino/swift-wallet.git", from: "1.0.0"),
+        .package(url: "https://github.com/fpseverino/fluent-wallet.git", from: "0.3.0"),
+        .package(url: "https://github.com/swift-server-community/APNSwift.git", from: "6.5.0"),
+        .package(url: "https://github.com/swift-server/swift-service-lifecycle.git", from: "2.11.0"),
+        .package(url: "https://github.com/adam-fowler/swift-zip-archive.git", from: "0.6.4"),
         // used in tests
-        .package(url: "https://github.com/vapor/fluent-sqlite-driver.git", from: "4.8.0"),
+        .package(url: "https://github.com/vapor/fluent-sqlite-driver.git", from: "4.9.0"),
     ],
     targets: [
         .target(
             name: "HummingbirdWallet",
             dependencies: [
+                .product(name: "FluentWallet", package: "fluent-wallet"),
                 .product(name: "Hummingbird", package: "hummingbird"),
                 .product(name: "HummingbirdFluent", package: "hummingbird-fluent"),
                 .product(name: "APNS", package: "apnswift"),
@@ -36,6 +38,8 @@ let package = Package(
             name: "HummingbirdWalletPasses",
             dependencies: [
                 .target(name: "HummingbirdWallet"),
+                .product(name: "WalletPasses", package: "swift-wallet"),
+                .product(name: "FluentWallet", package: "fluent-wallet"),
                 .product(name: "FluentWalletPasses", package: "fluent-wallet"),
                 .product(name: "ZipArchive", package: "swift-zip-archive"),
             ],
@@ -45,6 +49,7 @@ let package = Package(
             name: "HummingbirdWalletPassesTests",
             dependencies: [
                 .target(name: "HummingbirdWalletPasses"),
+                .product(name: "FluentWallet", package: "fluent-wallet"),
                 .product(name: "FluentSQLiteDriver", package: "fluent-sqlite-driver"),
                 .product(name: "HummingbirdTesting", package: "hummingbird"),
             ],
@@ -58,6 +63,8 @@ let package = Package(
             name: "HummingbirdWalletOrders",
             dependencies: [
                 .target(name: "HummingbirdWallet"),
+                .product(name: "WalletOrders", package: "swift-wallet"),
+                .product(name: "FluentWallet", package: "fluent-wallet"),
                 .product(name: "FluentWalletOrders", package: "fluent-wallet"),
             ],
             swiftSettings: swiftSettings
@@ -66,6 +73,7 @@ let package = Package(
             name: "HummingbirdWalletOrdersTests",
             dependencies: [
                 .target(name: "HummingbirdWalletOrders"),
+                .product(name: "FluentWallet", package: "fluent-wallet"),
                 .product(name: "FluentSQLiteDriver", package: "fluent-sqlite-driver"),
                 .product(name: "HummingbirdTesting", package: "hummingbird"),
             ],
@@ -79,6 +87,11 @@ let package = Package(
 
 var swiftSettings: [SwiftSetting] {
     [
-        .enableUpcomingFeature("ExistentialAny")
+        .enableUpcomingFeature("ExistentialAny"),
+        .enableUpcomingFeature("InternalImportsByDefault"),
+        .enableUpcomingFeature("MemberImportVisibility"),
+        .enableUpcomingFeature("InferIsolatedConformances"),
+        // .enableUpcomingFeature("NonisolatedNonsendingByDefault"),
+        .enableUpcomingFeature("ImmutableWeakCaptures"),
     ]
 }

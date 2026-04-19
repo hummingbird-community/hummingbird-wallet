@@ -1,9 +1,12 @@
 import FluentKit
+import FluentWallet
 import FluentWalletPasses
 import Foundation
-import Hummingbird
+public import Hummingbird
 import HummingbirdFluent
 import HummingbirdWallet
+import NIOFoundationCompat
+import WalletPasses
 
 extension PassesServiceCustom {
     typealias Context = BasicRequestContext

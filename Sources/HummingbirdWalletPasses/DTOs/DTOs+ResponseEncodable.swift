@@ -1,5 +1,5 @@
 import FluentWalletPasses
-import Hummingbird
+public import Hummingbird
 
 extension SerialNumbersDTO: @retroactive ResponseEncodable {}
 extension PersonalizationDictionaryDTO: @retroactive ResponseEncodable {}
